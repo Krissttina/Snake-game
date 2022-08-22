@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Snake-Game</title>
-  </head>
-  <body>
-    <!-- Game body -->
-    <div class="content">
-        <!-- Title -->
-        <h1>Snake Game</h1>
-        <!-- Points -->
-        <div class="points">
-           <input type="text"> 
-        </div>
-        <!-- Board -->
-        <div class="board">
-            <img src="">
-            <div class="snake">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake game</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-            </div>
-        </div>
-        <!-- Menu -->
-        <button>Stop</button>
-    </div>
+        canvas{
+            margin: 50px 10px;
+            box-shadow: black 20px 10px 20px;
+        }
+
+        button{
+            font: 400 15px "Lato", sans-serif;
+            margin: 5px 10px;
+            width: 85px;
+            height: 40px;
+            font-size: 20px;
+            border-radius: 3px;
+            outline: none;
+            background: rgb(180, 73, 73);
+            color: #eeebeb;
+            cursor: pointer;
+        }
+    </style>    
+</head>
+<body>
+
+    <h1>Snake Game</h1>
+
+    <button onclick="restartBtn()">Restart</button>
+    <button class="btn-pause" onclick="pauseBtn()">Pause</button>
+
+    <canvas id="game" width="400" height="400">
+        
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
