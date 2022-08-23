@@ -17,7 +17,7 @@
 ### Rules
 
 ### Images
-![Game insight](game.png)
+![Game insight]()
 
 ### Building
 

@@ -58,3 +58,171 @@ function drawGame() {
   setTimeout(drawGame, 1000 / speed);
 }
 
+function isGameOver() {
+    let gameOver = false;
+  
+    if (yVelocity === 0 && xVelocity === 0) {
+      return false;
+    }
+  
+    //walls
+    if (headX < 0) {
+      gameOver = true;
+    } else if (headX === tileCount) {
+      gameOver = true;
+    } else if (headY < 0) {
+      gameOver = true;
+    } else if (headY === tileCount) {
+      gameOver = true;
+    }
+  
+    for (let i = 0; i < snakeParts.length; i++) {
+      let part = snakeParts[i];
+      if (part.x === headX && part.y === headY) {
+        gameOver = true;
+        break;
+      }
+    }
+  
+    if (gameOver) {
+      ctx.fillStyle = "white";
+      ctx.font = "50px Verdana";
+  
+      if (gameOver) {
+        ctx.fillStyle = "white";
+        ctx.font = "50px Verdana";
+  
+        var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+        gradient.addColorStop("0", " magenta");
+        gradient.addColorStop("0.5", "blue");
+        gradient.addColorStop("1.0", "red");
+        // Fill with gradient
+        ctx.fillStyle = gradient;
+  
+        ctx.fillText("Game Over!", canvas.width / 6.5, canvas.height / 2);
+      }
+  
+      ctx.fillText("Game Over!", canvas.width / 6.5, canvas.height / 2);
+    }
+  
+    return gameOver;
+  }
+  
+  function drawScore() {
+    ctx.fillStyle = "white";
+    ctx.font = "20px Verdana";
+    ctx.fillText("Score " + score, canvas.width - 100, 20);
+  }
+  
+  function clearScreen() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+  
+  function drawSnake() {
+    ctx.fillStyle = "green";
+    for (let i = 0; i < snakeParts.length; i++) {
+      let part = snakeParts[i];
+      ctx.fillRect(part.x * tileCount, part.y * tileCount, tileSize, tileSize);
+    }
+  
+    snakeParts.push(new SnakePart(headX, headY)); //put an item at the end of the list next to the head
+    while (snakeParts.length > tailLength) {
+      snakeParts.shift(); // remove the furthet item from the snake parts if have more than our tail size.
+    }
+  
+    ctx.fillStyle = "orange";
+    ctx.fillRect(headX * tileCount, headY * tileCount, tileSize, tileSize);
+  }
+  
+  function changeSnakePosition() {
+    headX = headX + xVelocity;
+    headY = headY + yVelocity;
+  }
+  
+  function drawApple() {
+    ctx.fillStyle = "red";
+    ctx.fillRect(appleX * tileCount, appleY * tileCount, tileSize, tileSize);
+  }
+  
+  function checkAppleCollision() {
+    if (appleX === headX && appleY == headY) {
+      appleX = Math.floor(Math.random() * tileCount);
+      appleY = Math.floor(Math.random() * tileCount);
+      tailLength++;
+      score++;
+    }
+  }
+  
+  document.body.addEventListener("keydown", keyDown);
+  
+  function keyDown(event) {
+    //up
+    if (event.keyCode == 38 || event.keyCode == 87) {
+      //87 is w
+      if (inputsYVelocity == 1) return;
+      inputsYVelocity = -1;
+      inputsXVelocity = 0;
+    }
+  
+    //down
+    if (event.keyCode == 40 || event.keyCode == 83) {
+      // 83 is s
+      if (inputsYVelocity == -1) return;
+      inputsYVelocity = 1;
+      inputsXVelocity = 0;
+    }
+  
+    //left
+    if (event.keyCode == 37 || event.keyCode == 65) {
+      // 65 is a
+      if (inputsXVelocity == 1) return;
+      inputsYVelocity = 0;
+      inputsXVelocity = -1;
+    }
+  
+    //right
+    if (event.keyCode == 39 || event.keyCode == 68) {
+      //68 is d
+      if (inputsXVelocity == -1) return;
+      inputsYVelocity = 0;
+      inputsXVelocity = 1;
+    }
+  }
+  
+  drawGame();
+
+  // Restart button reloads the whole page
+  function restartBtn(){
+      location.reload();
+  }
+  
+  //set Pause button
+  /*
+  var buttonPause = document.querySelector("btn-pause");
+  var isPaused = false;
+  
+  buttonPause.addEventListener('click', pauseBtn() {
+    if(buttonPause == "clicked"){
+        innerHTML =  <i class="fa-solid fa-play"></i>;
+    }else{
+        innerHTML =  <i class="fa-solid fa-stop"></i>;
+    }
+  })
+
+
+  if(e.which === 32){
+    if(isPaused) resumeGame();
+    else pauseBtn();
+  }
+
+  function pauseBtn(){
+      clearInterval(interval);
+      isPaused = true;
+      canvas.style.opacity = 0.5;
+      canvasContext.font = "90px tahoma";
+      canvasContext.fillStyle = "white";
+      canvasContext.textAlign = "center";
+      canvasContext.textBaseline = "middle";
+      canvasContext.fillText("Game Paused", 200, 100);
+  }*/

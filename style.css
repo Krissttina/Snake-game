@@ -1,0 +1,28 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas{
+    margin: 50px 10px;
+    box-shadow: black 20px 10px 20px;
+}
+
+button{
+    text-align: center;
+    display: inline-block;
+    font: 400 15px "Lato", sans-serif;
+    margin: 5px 10px;
+    width: 85px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 3px;
+    outline: none;
+    background: rgb(180, 73, 73);
+    color: #eeebeb;
+    cursor: pointer;
+}
