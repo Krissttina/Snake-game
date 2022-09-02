@@ -30,15 +30,24 @@ canvas{
 
 button{
     text-align: center;
-    /*display: inline-block;*/
     font: 400 15px "Lato", sans-serif;
     margin: 5px 10px;
     width: 85px;
     height: 40px;
     font-size: 20px;
     border-radius: 3px;
-    outline: none;
+    border: none;
     background: rgb(29, 82, 79);
-    color: #eeebeb;
+    box-shadow: black 10px 5px 10px;
+    cursor: pointer;
+}
+
+button:hover{
+    margin: 6px 10px;
+    width: 83px;
+    height: 39px;
+    border-radius: 3px;
+    box-shadow: black 13px 7px 13px;
+    background: rgba(29, 82, 79, 0.884);
     cursor: pointer;
 }
