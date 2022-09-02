@@ -1,5 +1,6 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+//const resBtn = document.querySelector("restart");
 
 class SnakePart {
   constructor(x, y) {
@@ -60,7 +61,7 @@ function drawGame() {
 
 function isGameOver() {
     let gameOver = false;
-  
+
     if (yVelocity === 0 && xVelocity === 0) {
       return false;
     }
@@ -91,36 +92,41 @@ function isGameOver() {
       if (gameOver) {
         ctx.fillStyle = "white";
         ctx.font = "50px Verdana";
+        ctx.color = "white";
   
-        var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+       /* var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
         gradient.addColorStop("0", " magenta");
         gradient.addColorStop("0.5", "blue");
         gradient.addColorStop("1.0", "red");
         // Fill with gradient
         ctx.fillStyle = gradient;
   
-        ctx.fillText("Game Over!", canvas.width / 6.5, canvas.height / 2);
+        ctx.fillText("Game Over!", canvas.width / 6.5, canvas.height / 2);*/
       }
-  
+    
       ctx.fillText("Game Over!", canvas.width / 6.5, canvas.height / 2);
     }
-  
     return gameOver;
   }
   
+
+  //score
   function drawScore() {
     ctx.fillStyle = "white";
     ctx.font = "20px Verdana";
     ctx.fillText("Score " + score, canvas.width - 100, 20);
   }
   
+  //board
   function clearScreen() {
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "green";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
   
+
+  //snake
   function drawSnake() {
-    ctx.fillStyle = "green";
+    ctx.fillStyle = "white";
     for (let i = 0; i < snakeParts.length; i++) {
       let part = snakeParts[i];
       ctx.fillRect(part.x * tileCount, part.y * tileCount, tileSize, tileSize);
@@ -190,39 +196,44 @@ function isGameOver() {
     }
   }
   
-  drawGame();
-
-  // Restart button reloads the whole page
-  function restartBtn(){
-      location.reload();
-  }
-  
-  //set Pause button
-  /*
-  var buttonPause = document.querySelector("btn-pause");
-  var isPaused = false;
-  
-  buttonPause.addEventListener('click', pauseBtn() {
-    if(buttonPause == "clicked"){
-        innerHTML =  <i class="fa-solid fa-play"></i>;
-    }else{
-        innerHTML =  <i class="fa-solid fa-stop"></i>;
-    }
-  })
-
-
-  if(e.which === 32){
-    if(isPaused) resumeGame();
-    else pauseBtn();
-  }
-
-  function pauseBtn(){
-      clearInterval(interval);
-      isPaused = true;
-      canvas.style.opacity = 0.5;
-      canvasContext.font = "90px tahoma";
-      canvasContext.fillStyle = "white";
-      canvasContext.textAlign = "center";
-      canvasContext.textBaseline = "middle";
-      canvasContext.fillText("Game Paused", 200, 100);
+// Restart button reloads the whole page
+function restartBtn(){
+  /*if(gameOver){
+    resBtn.removeAttribute("hidden");
   }*/
+  location.reload();
+}
+
+//set Pause button
+/*
+var buttonPause = document.querySelector("btn-pause");
+var isPaused = false;
+
+buttonPause.addEventListener('click', pauseBtn() {
+  if(buttonPause == "clicked"){
+      innerHTML =  <i class="fa-solid fa-play"></i>;
+  }else{
+      innerHTML =  <i class="fa-solid fa-stop"></i>;
+  }
+})
+
+
+if(e.which === 32){
+  if(isPaused) resumeGame();
+  else pauseBtn();
+}
+
+function pauseBtn(){
+    clearInterval(interval);
+    isPaused = true;
+    canvas.style.opacity = 0.5;
+    canvasContext.font = "90px tahoma";
+    canvasContext.fillStyle = "white";
+    canvasContext.textAlign = "center";
+    canvasContext.textBaseline = "middle";
+    canvasContext.fillText("Game Paused", 200, 100);
+}*/
+
+
+
+  drawGame();
