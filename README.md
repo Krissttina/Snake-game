@@ -11,7 +11,7 @@
 
 ### Intro
 ### Description
-
+    For this project I used the canvas element. Biggest part was build on JS. There was styling needed only on the buttons and the title. 
 ### Research
 
 ### Rules
